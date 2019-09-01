@@ -1,10 +1,13 @@
-import { AuthDelegate } from "google-auth-wrapper";
+import { AuthDelegate } from 'google-auth-wrapper';
 import { DataService } from '@/dataservice/DataService';
+import { User } from '@/models/user';
 export class MongoDelegate implements AuthDelegate {
 
     public serialize(user) {
-        return DataService.UserService.FindOrCreate(
-            { Email: user.email.value, ProviderId: user.id }, 'providerId');
+        const u = new User();
+        u.Email = user.email.value;
+        u.ProviderId = user.providerId;
+        return DataService.UserService.FindOrCreate(u, 'providerId');
     }
 
     public deserialize(id) {
