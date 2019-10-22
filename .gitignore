@@ -22,3 +22,5 @@ yarn-error.log*
 /src/*.map
 *.js
 *.map
+server/config/AuthConfig.json
+compiled/*

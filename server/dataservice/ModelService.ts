@@ -1,4 +1,4 @@
-import { Typegoose, ModelType, Func } from 'typegoose';
+import { Typegoose, ModelType } from 'typegoose';
 import { Mongoose } from 'mongoose';
 
 export class ModelService<T extends Typegoose>{
@@ -10,12 +10,10 @@ export class ModelService<T extends Typegoose>{
         this.service = new model().getModelForClass(model, { existingMongoose: mongoose });;
     }
 
-    public FindOrCreate(obj: T, propName: string) {
-        return new Promise<T>((resolve, reject) => {
-            this.Get(obj[propName], propName).then((m: T) => {
-                m ? resolve(m) : this.Create(obj).then((o: T) => resolve(o));
-            }).catch(reject);
-        });
+    public async FindOrCreate(obj: T, propName: string) {
+        var res = await this.Get(obj[propName], propName);
+        console.log(res);
+        return res != null ? res : await this.Create(obj);
     }
 
     public Create = (obj: T) => new this.service(obj).save();

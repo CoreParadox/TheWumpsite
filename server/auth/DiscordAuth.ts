@@ -1,5 +1,5 @@
 import * as  Discord from 'passport-discord';
-import * as passport from 'passport';
+import passport = require('passport');
 import { Express } from 'express';
 import { AuthConfig, AuthDelegate } from 'google-auth-wrapper';
 type SerializationHandler = (err?: Error, id?: string) => any;
@@ -14,7 +14,6 @@ export class DiscordAuth {
         this.app = app;
         this.config = config;
         this.delegate = delegate;
-
         passport.serializeUser((u, d) => this.serializeUser(u, d));
         passport.deserializeUser((u, d) => this.deserializeUser(u, d));
         passport.use('discord', new Discord.Strategy({
@@ -45,7 +44,7 @@ export class DiscordAuth {
 
     public deserializeUser(id: any, done: SerializationHandler) {
         this.delegate.deserialize(id).then((o: any) => {
-            done(null, o.providerId);
+            done(null, o.ProviderId);
         }).catch((err: Error) => {
             done(err, null);
         });
@@ -53,7 +52,7 @@ export class DiscordAuth {
 
     public serializeUser(user: any, done: SerializationHandler) {
         this.delegate.serialize(user).then((u: any) => {
-            done(null, u.providerId);
+            done(null, u.ProviderId);
         }).catch(console.log);
     }
 
