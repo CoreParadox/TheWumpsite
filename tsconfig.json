@@ -31,6 +31,7 @@
     ]
   },
   "include": [
+    "index.ts",
     "server/**/*.json",
     "server/**/*.ts",
     "src/**/*.ts",

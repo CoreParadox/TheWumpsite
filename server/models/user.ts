@@ -7,7 +7,10 @@ export class User extends Typegoose {
     public Email!: string;
 
     @prop({ index: true, unique: true, required: true })
-    public ProviderId!: string;
+    public AccessToken!: string;
+
+    @prop({ index: true, unique: true, required:true})
+    public UserId!: string;
 
     @prop({ index: true, unique: true, required: false })
     public Profile?: Profile;

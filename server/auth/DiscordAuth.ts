@@ -44,7 +44,7 @@ export class DiscordAuth {
 
     public deserializeUser(id: any, done: SerializationHandler) {
         this.delegate.deserialize(id).then((o: any) => {
-            done(null, o.ProviderId);
+            done(null, o.UserId);
         }).catch((err: Error) => {
             done(err, null);
         });
@@ -52,7 +52,7 @@ export class DiscordAuth {
 
     public serializeUser(user: any, done: SerializationHandler) {
         this.delegate.serialize(user).then((u: any) => {
-            done(null, u.ProviderId);
+            done(null, u.UserId);
         }).catch(console.log);
     }
 

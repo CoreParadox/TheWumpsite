@@ -15,12 +15,19 @@
 </template>
 
 <style>
+#app div{
+  background: #4a5764;
+  height: 100%;
+}
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #d3d3d3;
+  background: #4a5764;
+  height: 100%;
+  position: relative;
 }
 #nav {
   padding: 30px;

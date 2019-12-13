@@ -10,8 +10,9 @@ export class ModelService<T extends Typegoose>{
         this.service = new model().getModelForClass(model, { existingMongoose: mongoose });;
     }
 
-    public async FindOrCreate(obj: T, propName: string) {
-        var res = await this.Get(obj[propName], propName);
+    public async GetOrCreate(obj: T, propName: string) {
+        console.log(propName)
+        const res = await this.Get(obj[propName], propName);
         console.log(res);
         return res != null ? res : await this.Create(obj);
     }
@@ -22,11 +23,10 @@ export class ModelService<T extends Typegoose>{
 
     public Update = (obj, propName) => this.service.findOneAndUpdate({ [propName]: obj[propName] }, obj);
 
-    public Get = (obj, propName) => this.service.findOne({ [propName]: obj[propName] }).then(u => u);
+    public Get = (obj, propName) => this.service.findOne({ [propName]: obj }).then((u) => u);
 
     public Delete = (value, propName) => this.service.deleteOne({ [propName]: value }).then(u => u);
     // console.log(`deleting ${[propName]} ${value}`);
-
     public GetAll = () => this.service.find();
 
 }

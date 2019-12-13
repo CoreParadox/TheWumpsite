@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
-
+import Login from './views/Login.vue';
+import Resources from './views/Resources.vue';
 Vue.use(Router);
 
 export default new Router({
@@ -12,6 +13,16 @@ export default new Router({
       component: Home,
     },
     {
+      path: '/login',
+      name: 'login',
+      component: Login,
+    },
+    {
+      path: '/resources',
+      name: 'resources',
+      component: Resources,
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting
@@ -20,4 +31,6 @@ export default new Router({
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
     },
   ],
+
+  
 });
