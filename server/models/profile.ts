@@ -1,8 +1,7 @@
-import { prop, Typegoose } from 'typegoose';
+import { prop, Typegoose, Ref } from 'typegoose';
 import { Character } from './character';
 
 export class Profile extends Typegoose {
-
     @prop({ required: false, index: false, unique: false })
     public PreferredName: string;
 
@@ -18,7 +17,7 @@ export class Profile extends Typegoose {
     @prop({ index: false, unique: false, required: false })
     public Housing: string;
 
-    @prop({ index: false, unique: false })
-    public Character: Character;
+    @prop({ ref: Character })
+    public Character: Ref<Character>;
 
 }

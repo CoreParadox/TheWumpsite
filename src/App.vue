@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <div id="nav">
       <router-link to="/">Home</router-link>|
       <a href="https://imgur.com/a/VwOmU4Z">Gallery</a>|
@@ -15,8 +16,7 @@
 </template>
 
 <style>
-#app div{
-  background: #4a5764;
+html,body{
   height: 100%;
 }
 #app {
@@ -27,7 +27,6 @@
   color: #d3d3d3;
   background: #4a5764;
   height: 100%;
-  position: relative;
 }
 #nav {
   padding: 30px;
@@ -40,5 +39,10 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+#app > div{
+  width: 80%;
+  margin-left:10%;
 }
 </style>

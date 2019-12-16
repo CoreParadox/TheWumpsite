@@ -11,7 +11,7 @@ export class ModelService<T extends Typegoose>{
     }
 
     public async GetOrCreate(obj: T, propName: string) {
-        console.log(propName)
+        console.log(propName);
         const res = await this.Get(obj[propName], propName);
         console.log(res);
         return res != null ? res : await this.Create(obj);

@@ -6,7 +6,7 @@ export class Character extends Typegoose {
     public Race: ['Hyur', 'Elezen', 'Lalafell', 'Miqo\'te', 'Roegadyn', 'Au Ra', 'Viera', 'Hrothgar'];
 
     @prop({ index: false, unique: false })
-    public Gender: string;
+    public Gender: ['Male', 'Female', 'Other'];
 
     @prop({ required: false, index: true, unique: false })
     public FirstName: string;

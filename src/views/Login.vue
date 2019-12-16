@@ -32,9 +32,6 @@ export default class Login extends Vue {}
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    height: 100%;
-    width:80%;
-    left:10%;
     position:fixed;
 }
 
