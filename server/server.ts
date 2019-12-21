@@ -1,6 +1,6 @@
 const express = require('express');
 const session = require('express-session');
-import * as router from './router';
+import router = require('./router');
 import * as path from 'path';
 import * as bodyParser from 'body-parser';
 import { DiscordAuth } from './auth/DiscordAuth';
@@ -20,13 +20,12 @@ export class Server {
             resave: true,
         }));
         const auth = new DiscordAuth(this.app, authConfig, new MongoDelegate());
-        this.app.use('/api', auth.ensureAuthenticated, router.api);
         this.app.use(express.static(path.join(__dirname, '..', 'dist')));
         this.app.use((req, res, next) => {
             res.locals.login = (req).isAuthenticated();
             next();
         });
-
+        this.app.use('/api', auth.ensureAuthenticated, router);
         this.app.get(['/unauthorized', '/fail'], (req, res) => res.sendStatus(403));
 
         this.app.get('/authenticated', (req, res) => res.send(auth.isAuthenticated(req, res)))

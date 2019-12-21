@@ -18,6 +18,6 @@ export class Profile extends Typegoose {
     public Housing: string;
 
     @prop({ ref: Character })
-    public Character: Ref<Character>;
+    public Character?: Ref<Character>;
 
 }
