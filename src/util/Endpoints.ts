@@ -1,4 +1,4 @@
 export class Endpoints{
-    public static SaveProfile = "/api/profile"
-    public static SaveCharacter = "/api/character"
+    public static Profile = "/api/profile"
+    public static Character = "/api/character"
 }

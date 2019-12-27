@@ -2,7 +2,7 @@ import { prop, Typegoose } from 'typegoose';
 
 export class Character extends Typegoose {
 
-    @prop({ index: true, unique: true })
+    @prop({ index: true, unique: false })
     public Race: ['Hyur', 'Elezen', 'Lalafell', 'Miqo\'te', 'Roegadyn', 'Au Ra', 'Viera', 'Hrothgar'];
 
     @prop({ index: false, unique: false })

@@ -30,6 +30,7 @@ export class Server {
 
         this.app.get('/authenticated', (req, res) => res.send(auth.isAuthenticated(req, res)))
 
+
         this.app.get('*', (req, res) => res.sendFile(path.join(__dirname, '../dist/index.html')));
 
         this.app.use((e, req, res, next) => res.sendStatus(400));

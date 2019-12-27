@@ -26,15 +26,15 @@
           <div class="col">
             <h4>Roles</h4>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" v-model="user.Roles" id="DPS" />
+              <input class="form-check-input" type="checkbox" v-model="user.Roles.DPS" id="DPS" />
               <label for="DPS" class="form-check-label">DPS</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" v-model="user.Roles" id="Healer" />
+              <input class="form-check-input" type="checkbox" v-model="user.Roles.Healer" id="Healer" />
               <label for="Healer" class="form-check-label">Heal</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" v-model="user.Roles" id="Tank" />
+              <input class="form-check-input" type="checkbox" v-model="user.Roles.Tank" id="Tank" />
               <label for="Tank" class="form-check-label">Tank</label>
             </div>
           </div>
@@ -62,17 +62,17 @@
         <div class="row">
         <div class="form-group col">
           <label for="fname">First Name</label>
-          <input type="text" class="form-control" name="fname" />
+          <input type="text" class="form-control" name="fname" v-model="character.FirstName"/>
         </div>
         <div class="form-group col">
           <label for="lname">Last Name</label>
-          <input type="text" class="form-control" name="lname" />
+          <input type="text" class="form-control" name="lname" v-model="character.LastName"/>
         </div>
         </div>
       <div class="row">
         <div class="form-group col">
           <label for="Race">Race</label>
-          <select name="race" class="form-control" id="race">
+          <select name="race" class="form-control" id="race" v-model="character.Race">
             <option>Hyur</option>
             <option>Elezen</option>
             <option>Lalafell</option>
@@ -85,7 +85,7 @@
         </div>
         <div class="form-group col">
           <label for="Gender">Gender</label>
-          <select name="gender" class="form-control" id="gender">
+          <select name="gender" class="form-control" id="gender" v-model="character.Gender">
             <option>Male</option>
             <option>Female</option>
           </select>
@@ -98,9 +98,10 @@
           class="form-control"
           rows="6"
           value="Enter your characters description here."
+          v-model="character.Description"
         />
       </div>
-      <input class="btn btn-primary" type="submit" id="SaveCharacter" value="Save">
+      <input class="btn btn-primary" type="button" id="SaveCharacter" v-on:click="SaveCharacter" value="Save">
     </form>
     </div>
   </div>
@@ -120,16 +121,33 @@ const http = axios.default;
 })
 export default class Profile extends Vue {
   public user:UserProfile = new UserProfile();
-  public character:Character = new Character();
+  private character:Character = new Character();
+  
+
+  public async beforeMount(){
+    await this.LoadProfile();
+    await this.LoadCharacter();
+  }
+  
 
   public async SaveProfile(){
-    this.user.Roles = ["a","b","c"]
-    var res = await http.put(Endpoints.SaveProfile, this.user);
+    var res = await http.put(Endpoints.Profile, this.user);
     this.user = res.data;
   }
 
-  public SaveCharacter(){
+  public async LoadProfile(){
+    var res = await http.get(Endpoints.Profile);
+    this.user = res.data;
+  }
 
+  public async LoadCharacter(){
+    var res = await http.get(Endpoints.Character);
+    this.character = res.data;
+  }
+
+  public async SaveCharacter(){
+    var res = await http.put(Endpoints.Character, this.character);
+    this.character = res.data;
   }
 
 

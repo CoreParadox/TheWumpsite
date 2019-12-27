@@ -5,6 +5,11 @@ export class MongoDelegate implements AuthDelegate {
 
     public serialize(user) {
         const u = new User();
+        u.Verified = user.verified;
+        u.Username = user.username + user.discriminator;
+        u.Servers = (user.guilds as any[]).map(g => {
+            return {Id: g.id, Name: g.name, Owner: g.owner};
+        });
         u.Email = user.email;
         u.AccessToken = user.accessToken;
         u.UserId = user.id;

@@ -13,35 +13,54 @@ export class ModelService<T extends Typegoose> {
     }
 
     public async Transaction(delegate: () => void) {
-        const session = this.mongoose.startSession();
-        (await session).startTransaction();
+        const session = await this.mongoose.startSession();
+        session.startTransaction();
         try {
-            await delegate();
-            (await session).commitTransaction();
+            delegate();
+            session.commitTransaction();
         } catch (e) {
-            (await session).abortTransaction();
+            session.abortTransaction();
         } finally {
-            if ((await session).inTransaction()) {
-                (await session).abortTransaction();
+            if (session.inTransaction()) {
+                session.abortTransaction();
             }
         }
     }
 
     public async GetOrCreate(obj: T, propName: string) {
         const res = await this.Get(obj[propName], propName);
+        if (res != null && res !== obj) {
+            (await this.Update(obj[propName], propName, obj)).save();
+        }
         return res != null ? res : await this.Create(obj);
     }
 
     public Create = (obj: T) => new this.service(obj).save();
 
-    public Find = (predicate: (() => boolean)) => this.service.$where(predicate);
+    public Find = (predicate: ((obj: T) => boolean)) => this.service.$where(predicate);
 
-    public Update = (obj, propName) => this.service.findOneAndUpdate({ [propName]: obj[propName] }, obj);
+    public FindOne = (query: any) => this.service.findOne(query);
 
-    public Get = (obj, propName) => this.service.findOne({ [propName]: obj }).then((u) => u);
+    public Update = (obj, propName, update ) => this.service.findOneAndUpdate({ [propName]: obj }, update);
+
+    public Get = (obj, propName) => this.GetQuery(obj, propName).then((u) => u);
+    public GetQuery = (obj, propName) => this.service.findOne({ [propName]: obj});
+    public GetAndPopulate = (obj, propName, path: string) => {
+        let populationParams = null;
+        path.split('.').reverse().forEach((p) => {
+            if (populationParams == null) {
+                populationParams = {path: p};
+            } else {
+                populationParams = {
+                    path: p,
+                    populate: populationParams,
+                };
+            }
+        });
+        return this.GetQuery(obj, propName).populate(populationParams).exec();
+    }
 
     public Delete = (value, propName) => this.service.deleteOne({ [propName]: value }).then((u) => u);
-    // console.log(`deleting ${[propName]} ${value}`);
     public GetAll = () => this.service.find();
 
 }
