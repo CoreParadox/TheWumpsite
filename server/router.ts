@@ -90,7 +90,7 @@ router.get('/user/:id', async(req, res) => {
 })
 
 router.get('/users', async (req, res) => {
-    var users: User[] = await DataService.UserService.GetAll()
+    let users: User[] = await DataService.UserService.GetAll()
         .populate(DataService.UserService.BuildPopulation('Profile.Character')).exec();
     res.json(users.map((u: any) => {
         return {
@@ -99,7 +99,7 @@ router.get('/users', async (req, res) => {
             PreferredName: u.Profile.PreferredName,
             Pronouns: u.Profile.Pronoun,
             Id: u.UserId,
-        }
+        };
     }));
 });
 
