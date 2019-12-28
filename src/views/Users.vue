@@ -1,7 +1,7 @@
 <template>
   <div class="resources">
       <ul id="resources">
-        <li v-for="resource in resources" v-bind:key="resource.name"><a v-bind:href='resource.url'>{{resource.name}}</a></li>
+        <li v-for="user in users" v-bind:key="user.Id"><router-link v-bind:to="'/user/'+user.Id">{{`${user.FirstName} ${user.LastName} (${user.PreferredName}) - ${user.Pronouns}`}}</router-link></li>
       </ul>
   </div>
 </template>
@@ -17,16 +17,16 @@ const http = axios.default;
   beforeRouteEnter: LoggedInGuard.isLoggedIn
 })
 
-export default class Resources extends Vue{
-  public resources:{url:string, name:string}[] = [];
+export default class Users extends Vue{
+  public users:{url:string, name:string}[] = [];
   
   public async beforeMount(){
-    await this.LoadResources();
+    await this.LoadUsers();
   }
 
-  public async LoadResources(){
-    var res = await http.get(Endpoints.Resources);
-    this.resources = res.data;
+  public async LoadUsers(){
+    var res = await http.get(Endpoints.Users);
+    this.users = res.data;
   }
 }
 </script>

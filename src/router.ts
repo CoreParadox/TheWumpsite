@@ -3,7 +3,10 @@ import Router from 'vue-router';
 import Home from './views/Home.vue';
 import Login from './views/Login.vue';
 import Resources from './views/Resources.vue';
+import publicResources from './views/PublicResources.vue';
 import Profile from './views/Profile.vue';
+import Users from './views/Users.vue';
+import User from './views/User.vue';
 Vue.use(Router);
 
 export default new Router({
@@ -24,9 +27,24 @@ export default new Router({
       component: Resources,
     },
     {
+      path: '/publicResources',
+      name: 'publicResources',
+      component: publicResources,
+    },
+    {
       path: '/profile',
       name: 'profile',
       component: Profile,
+    },
+    {
+      path: '/users',
+      name: 'users',
+      component: Users,
+    },
+    {
+      path: '/user/:id',
+      name: 'user',
+      component: User,
     },
     {
       path: '/about',
@@ -38,5 +56,4 @@ export default new Router({
     },
   ],
 
-  
 });

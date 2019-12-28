@@ -4,12 +4,13 @@
     <div id="nav">
       <router-link to="/">Home</router-link>|
       <a href="https://imgur.com/a/VwOmU4Z">Gallery</a>|
-      <router-link to="/public_resources">Public Resources</router-link>|
+      <router-link to="/publicResources">Public Resources</router-link>|
       <router-link to="/calendar">Calendar</router-link>|
       <router-link to="/forum">Forum</router-link>|
       <router-link to="/resources">Resources</router-link>|
       <router-link to="/login">Login</router-link>|
-      <router-link to="/profile">Profile</router-link>
+      <router-link to="/profile">Profile</router-link>|
+      <router-link to="/users">Members</router-link>
     </div>
     <router-view />
   </div>

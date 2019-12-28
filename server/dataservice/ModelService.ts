@@ -45,11 +45,15 @@ export class ModelService<T extends Typegoose> {
 
     public Get = (obj, propName) => this.GetQuery(obj, propName).then((u) => u);
     public GetQuery = (obj, propName) => this.service.findOne({ [propName]: obj});
-    public GetAndPopulate = (obj, propName, path: string) => {
+    public GetAndPopulate(obj, propName, path: string) {
+        return this.GetQuery(obj, propName).populate(this.BuildPopulation(path)).exec();
+    }
+
+    public BuildPopulation(path: string) {
         let populationParams = null;
         path.split('.').reverse().forEach((p) => {
             if (populationParams == null) {
-                populationParams = {path: p};
+                populationParams = { path: p };
             } else {
                 populationParams = {
                     path: p,
@@ -57,7 +61,7 @@ export class ModelService<T extends Typegoose> {
                 };
             }
         });
-        return this.GetQuery(obj, propName).populate(populationParams).exec();
+        return populationParams;
     }
 
     public Delete = (value, propName) => this.service.deleteOne({ [propName]: value }).then((u) => u);
