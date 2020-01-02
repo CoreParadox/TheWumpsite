@@ -7,8 +7,17 @@ import { Character } from '../models/character';
 const config = require('../config/AuthConfig.json');
 (mongoose as any).Promise = global.Promise;
 
-mongoose.connect('mongodb://' + config.Database.User + ':' + config.Database.Password +
-  '@' + config.Database.Host + ':' + config.Database.Port + '/' +
+let connection = 'mongodb://';
+let connectionPath = config.Database.Host;
+if(config.Database.IsSRV) {
+  let pos = connection.indexOf(':');
+  connection = [connection.slice(0, pos), '+srv', connection.slice(pos)].join('');
+}
+else {
+  connectionPath += config.Database.Port;
+}
+
+mongoose.connect(connection + config.Database.User + ':' + config.Database.Password + '@' + connectionPath + '/' +
   config.Database.Database, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false });
 
 const userService = new ModelService<User>(User, mongoose);
