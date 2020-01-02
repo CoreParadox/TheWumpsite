@@ -1,5 +1,5 @@
 <template>
-  <div class="resources">
+  <div class="content resources">
       <ul id="resources">
         <li v-for="resource in resources" v-bind:key="resource.name"><a v-bind:href='resource.url'>{{resource.name}}</a></li>
       </ul>

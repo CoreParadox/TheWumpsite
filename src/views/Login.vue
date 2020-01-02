@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div class="content login">
       <a class="login-button" href="/login">
         <img class="discord-logo" src="../assets/Discord-Logo-White.png"/>
         <p class="login-text">Login with Discord</p>

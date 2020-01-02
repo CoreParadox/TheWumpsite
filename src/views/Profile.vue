@@ -1,5 +1,5 @@
 <template>
-  <div class="profile">
+  <div class="content profile">
     <div class="row">
     <form class="col border">
         <h2>Profile</h2>

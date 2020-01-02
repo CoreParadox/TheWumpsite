@@ -39,25 +39,25 @@ router.get('/resources', async (req, res) => {
 router.get('/publicResources', async (req, res) => {
     res.json([
         {
-            url: 'ffxiv.consolegameswiki.com/',
+            url: 'https://ffxiv.consolegameswiki.com/',
             name: 'FFXIV Console Games Wiki',
+            className: 'console-games-wiki'
         },
         {
             url: 'https://ffxiv.gamerescape.com/wiki/Main_Page',
             name: 'FFXIV Gamer Escape Wiki',
+            className: 'gamer-escape'
         },
         {
             url: 'http://ffxiv.ariyala.com/',
             name: 'Ariyala\'s Toolkit',
+            className: 'ariyalas-toolkit'
         },
         {
             url: 'http://www.garlandtools.org/',
             name: 'Garland Tools',
-        },
-        {
-            url: 'http://xivdb.com/',
-            name: 'XIV DB',
-        },
+            className: 'garland-tools'
+        }
     ]);
 });
 
