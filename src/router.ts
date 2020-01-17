@@ -7,6 +7,8 @@ import publicResources from './views/PublicResources.vue';
 import Profile from './views/Profile.vue';
 import Users from './views/Users.vue';
 import User from './views/User.vue';
+import Apply from './views/Apply.vue';
+import Events from './views/Events.vue';
 Vue.use(Router);
 
 export default new Router({
@@ -45,6 +47,16 @@ export default new Router({
       path: '/user/:id',
       name: 'user',
       component: User,
+    },
+    {
+      path: '/apply',
+      name: 'apply',
+      component: Apply,
+    },
+    {
+      path: '/events',
+      name: 'events',
+      component: Events,
     },
     {
       path: '/about',

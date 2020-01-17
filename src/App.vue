@@ -10,6 +10,8 @@
       <router-link to="/resources">Resources</router-link>|
       <router-link to="/login">Login</router-link>|
       <router-link to="/profile">Profile</router-link>|
+      <router-link to="/Apply">Apply</router-link>|
+      <router-link to="/Events">Events</router-link>|
       <router-link to="/users">Members</router-link>
     </div>
     <router-view />

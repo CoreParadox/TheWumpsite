@@ -1,0 +1,16 @@
+{
+    "Database": {
+        "Host": "127.0.0.1",
+        "Port": "27017",
+        "Database": "WotW",
+        "User": "User",
+        "Password": "Password"
+    },
+    "sessionSecret": "notasecret",
+    "clientID": "clientID",
+    "clientSecret": "clientSecret",
+    "scope": ["identify", "email", "guilds"],
+    "authRoute": "/login",
+    "authCallback": "/auth/discord/callback",
+    "logoutRoute": "/logout"
+}
