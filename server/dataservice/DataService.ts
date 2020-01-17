@@ -14,7 +14,7 @@ if(config.Database.IsSRV) {
   connection = [connection.slice(0, pos), '+srv', connection.slice(pos)].join('');
 }
 else {
-  connectionPath += config.Database.Port;
+  connectionPath += ":"+config.Database.Port;
 }
 
 mongoose.connect(connection + config.Database.User + ':' + config.Database.Password + '@' + connectionPath + '/' +

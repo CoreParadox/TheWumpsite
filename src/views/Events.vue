@@ -1,5 +1,5 @@
 <template>
-  <div class="Events"> 
+  <div class="content Events"> 
     <vue-cal style="height: 40%"></vue-cal>
   </div>
 </template>

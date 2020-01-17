@@ -92,7 +92,7 @@ router.get('/user/:id', async(req, res) => {
 router.get('/users', async (req, res) => {
     let users: User[] = await DataService.UserService.GetAll()
         .populate(DataService.UserService.BuildPopulation('Profile.Character')).exec();
-    res.json(users.map((u: any) => {
+    res.json(users.filter(u => u.Profile).map((u: any) => {
         return {
             FirstName: u.Profile.Character.FirstName,
             LastName: u.Profile.Character.LastName,
@@ -106,13 +106,13 @@ router.get('/users', async (req, res) => {
 router.get('/profile', async (req: any, res) => {
     let user = await GetUser(req);
     user = await user.populate('Profile').execPopulate();
-    res.json(user.Profile);
+    res.json(user.Profile ? user.Profile : new Profile());
 });
 
 router.get('/character', async (req: any, res) => {
     let id = req.session.passport.user;
     let user: any = await DataService.UserService.GetAndPopulate(id, 'UserId', 'Profile.Character');
-    res.json(user.Profile.Character);
+    res.json(user.Profile ? user.Profile.Character : new Character());
 });
 
 // TODO: there is probably a better way to edit a sub-sub document

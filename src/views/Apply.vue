@@ -1,5 +1,5 @@
 <template>
-  <div class="Apply">
+  <div class="content Apply">
     <div class="row">
       <form class="col border">
         <div class="row">
