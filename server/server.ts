@@ -25,6 +25,11 @@ export class Server {
             res.locals.login = (req).isAuthenticated();
             next();
         });
+
+        this.app.get('/logout', (req) => {
+           req.logout();
+        });
+
         this.app.use('/api', auth.ensureAuthenticated, router);
         this.app.get(['/unauthorized', '/fail'], (req, res) => res.sendStatus(403));
 
