@@ -24,3 +24,4 @@ yarn-error.log*
 *.map
 server/config/AuthConfig.json
 compiled/*
+.vs/*

@@ -1,5 +1,5 @@
 <template>
-  <div class='home'>
+  <div class='content home'>
     <img alt='Wump Header' src='../assets/WumpHeader.png' />
     <HelloWorld msg='Hello World' />
   </div>

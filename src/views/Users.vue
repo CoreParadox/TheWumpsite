@@ -1,5 +1,5 @@
 <template>
-  <div class="resources">
+  <div class="content resources">
       <ul id="resources">
         <li v-for="user in users" v-bind:key="user.Id"><router-link v-bind:to="'/user/'+user.Id">{{`${user.FirstName} ${user.LastName} (${user.PreferredName}) - ${user.Pronouns}`}}</router-link></li>
       </ul>

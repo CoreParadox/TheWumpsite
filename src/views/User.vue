@@ -1,5 +1,5 @@
 <template>
-  <div class="user">
+  <div class="content user">
     <p>Preferred Name:{{user.PreferredName}}</p>
     <p>Pronouns: {{user.Pronoun}}</p>
     <p>Housing: {{user.Housing}}</p>
