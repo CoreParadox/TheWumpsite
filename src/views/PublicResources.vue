@@ -52,10 +52,11 @@ export default class publicResources extends Vue{
 
     li {
       display: flex;
-      flex: .2;
+      flex: 1;
       list-style: none;
       width: 100%;
       margin: .5em 0;
+      min-height: 5em;
 
       a {
         width: 100%;
@@ -121,7 +122,6 @@ export default class publicResources extends Vue{
 
         &.gamer-escape, &.ariyalas-toolkit {
           .link-icon:after {
-            font-size: 60px;
             font-weight: bold;
             display: flex;
             width: 100%;

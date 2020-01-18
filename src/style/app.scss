@@ -6,16 +6,25 @@ html, body {
     height: 100vh;
     width: 100vw;
 }
-.center{
+
+body {
+    min-width: 45em;
+}
+
+.center {
     text-align: center;
 }
+
 #app {
     font-family: "Avenir", Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: $text-color-light;
     background: $primary-color;
-    height: 100%;
+    min-height: 100%;
+    position: relative;
+    padding: 0 2em;
+    box-sizing: border-box;
 
     $nav-margin: 5em;
 
@@ -26,6 +35,7 @@ html, body {
         display: flex;
         justify-content: center;
         align-items: center;
+        position: relative;
     
         a {
             font-weight: bold;
@@ -39,10 +49,14 @@ html, body {
         }
     }
 
-.users {
-    li {
-        list-style-type: none;
+    .content {
+        position: relative;
     }
-}
+
+    .users {
+        li {
+            list-style-type: none;
+        }
+    }
     
 }

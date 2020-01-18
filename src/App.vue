@@ -42,7 +42,6 @@
 .login-button{
     position: absolute;
     right:3%;
-    top:2%;  
     display: flex;
     width: 130px;
     padding: 0;
