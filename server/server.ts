@@ -5,6 +5,7 @@ import * as path from 'path';
 import * as bodyParser from 'body-parser';
 import { DiscordAuth } from './auth/DiscordAuth';
 import { MongoDelegate } from './auth/AuthDelegate';
+import { DataService } from './dataService/DataService';
 const cookieParser = require('cookie-parser')();
 
 export class Server {
@@ -25,6 +26,34 @@ export class Server {
             res.locals.login = (req).isAuthenticated();
             next();
         });
+        this.app.post('/api/application', async (req: any, res) => {
+            let application = await DataService.ApplicationService.Create(req.body);
+            res.json(application);
+        });
+        this.app.get('/api/publicResources', async (req, res) => {
+            res.json([
+                {
+                    url: 'https://ffxiv.consolegameswiki.com/',
+                    name: 'FFXIV Console Games Wiki',
+                    className: 'console-games-wiki',
+                },
+                {
+                    url: 'https://ffxiv.gamerescape.com/wiki/Main_Page',
+                    name: 'FFXIV Gamer Escape Wiki',
+                    className: 'gamer-escape',
+                },
+                {
+                    url: 'http://ffxiv.ariyala.com/',
+                    name: 'Ariyala\'s Toolkit',
+                    className: 'ariyalas-toolkit',
+                },
+                {
+                    url: 'http://www.garlandtools.org/',
+                    name: 'Garland Tools',
+                    className: 'garland-tools',
+                }
+            ]);
+        });
 
         this.app.get('/logout', (req) => {
            req.logout();
@@ -42,7 +71,7 @@ export class Server {
     }
 
     public start() {
-        this.app.listen(3000);
-        console.log('listening on port %d', 3000);
+        this.app.listen(6900);
+        console.log('listening on port %d', 6900);
     }
 }

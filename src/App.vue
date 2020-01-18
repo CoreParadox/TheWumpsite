@@ -4,17 +4,22 @@
     <div id="nav">
       <router-link to="/">Home</router-link>&nbsp;|&nbsp;
       <router-link to="/publicResources">Public Resources</router-link>&nbsp;|&nbsp;
-      <router-link v-if="!loggedIn" to="/Apply">Apply&nbsp;|&nbsp;</router-link>
+      <router-link to="/rules">Rules</router-link></router-link>&nbsp;|&nbsp;
+      <router-link v-if="!loggedIn" to="/Apply">Apply</router-link>
       <span v-if="loggedIn">
         <a href="https://imgur.com/a/VwOmU4Z" target="_blank">Gallery</a>&nbsp;|&nbsp;
-        <router-link to="/forum">Forum</router-link>&nbsp;|&nbsp;
+        <!-- <router-link to="/forum">Forum</router-link>&nbsp;|&nbsp; -->
         <router-link to="/resources">Resources</router-link>&nbsp;|&nbsp;
         <router-link to="/profile">Profile</router-link>&nbsp;|&nbsp;
         <router-link to="/Events">Calendar</router-link>&nbsp;|&nbsp;
         <router-link to="/users">Members</router-link>&nbsp;|&nbsp;
         <a v-on:click="LogOut">Log Out</a>
       </span>
-      <router-link v-else to="/login">Login</router-link>
+      <a v-else class="login-button" href="/login">
+        <img class="discord-logo" src="./assets/Discord-Logo-White.png"/>
+        <p class="login-text">Discord Login</p>
+      </a>
+      
     </div>
     <router-view />
   </div>
@@ -22,6 +27,32 @@
 
 <style lang="scss">
   @import './style/app.scss';
+  .login-text{
+    color:#FFFFFF; 
+    font-size:.75em;
+    margin-top:12px;
+    font-weight:900;
+    align-self:center;
+  }
+  
+.discord-logo{
+    width:30px;
+    height:auto;
+}
+
+.login-button{
+    position:fixed;
+    right:30px;
+    top:1.5em;  
+    display: flex;
+    width: 130px;
+    padding: 0;
+    margin:0;
+    border-radius: 6px;
+    background-color:#7289DA;
+    align-items:center;
+    justify-content: left;
+}
 </style>
 <script lang="ts">
 import * as axios from 'axios';

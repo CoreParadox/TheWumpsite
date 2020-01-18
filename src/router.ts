@@ -9,6 +9,8 @@ import Users from './views/Users.vue';
 import User from './views/User.vue';
 import Apply from './views/Apply.vue';
 import Events from './views/Events.vue';
+import Rules from './views/Rules.vue';
+
 Vue.use(Router);
 
 export default new Router({
@@ -52,6 +54,11 @@ export default new Router({
       path: '/apply',
       name: 'apply',
       component: Apply,
+    },
+    {
+      path: '/rules',
+      name: 'rules',
+      component: Rules,
     },
     {
       path: '/events',

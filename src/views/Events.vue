@@ -1,6 +1,6 @@
 <template>
   <div class="content Events"> 
-    <vue-cal style="height: 40%"></vue-cal>
+    <vue-cal style="height: 100%" :events='eventList' :twelveHour='true' :timeFrom='0' :timeTo='24*60' events-count-on-year-view events-on-month-view="short"></vue-cal>
   </div>
 </template>
 
@@ -18,10 +18,29 @@ import 'vue-cal/dist/vuecal.css'
   //beforeRouteEnter: LoggedInGuard.isLoggedIn,
 })
 export default class EventCalendar extends Vue {
-  public events = [];
+  private events = [];
+
+  get eventList(){
+    return this.events;
+  }
+  public async beforeMount(){
+    console.log("Loading...")
+    await this.LoadEvents();
+  }
+
   public async LoadEvents() {
     var res = await http.get(Endpoints.Events);
-    this.events = res.data;
+    this.events = res.data.map(e => {
+     return {
+        title:e.title,
+        startDate:new Date(e.start),
+        endDate:new Date(e.end),
+      }
+    });
+    console.log(this.events);
   }
 }
+
+
+
 </script>

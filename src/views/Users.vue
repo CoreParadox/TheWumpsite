@@ -1,6 +1,6 @@
 <template>
-  <div class="content resources">
-      <ul id="resources">
+  <div class="content users">
+      <ul id="users">
         <li v-for="user in users" v-bind:key="user.Id"><router-link v-bind:to="'/user/'+user.Id">{{`${user.FirstName} ${user.LastName} (${user.PreferredName}) - ${user.Pronouns}`}}</router-link></li>
       </ul>
   </div>
@@ -30,4 +30,10 @@ export default class Users extends Vue{
   }
 }
 </script>
-
+<style lang="scss">
+.users{
+    li{
+        list-style-type: none;
+    }
+}
+</style>

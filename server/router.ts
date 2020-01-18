@@ -1,5 +1,5 @@
 import express = require('express');
-import { DataService } from './dataservice/DataService';
+import { DataService } from './dataService/DataService';
 import { Profile } from './models/profile';
 import { Typegoose, isDocument } from 'typegoose';
 import { User } from './models/user';
@@ -37,31 +37,6 @@ router.get('/resources', async (req, res) => {
     ]);
 });
 
-router.get('/publicResources', async (req, res) => {
-    res.json([
-        {
-            url: 'https://ffxiv.consolegameswiki.com/',
-            name: 'FFXIV Console Games Wiki',
-            className: 'console-games-wiki'
-        },
-        {
-            url: 'https://ffxiv.gamerescape.com/wiki/Main_Page',
-            name: 'FFXIV Gamer Escape Wiki',
-            className: 'gamer-escape'
-        },
-        {
-            url: 'http://ffxiv.ariyala.com/',
-            name: 'Ariyala\'s Toolkit',
-            className: 'ariyalas-toolkit'
-        },
-        {
-            url: 'http://www.garlandtools.org/',
-            name: 'Garland Tools',
-            className: 'garland-tools'
-        }
-    ]);
-});
-
 router.get('/isWump', async (req, res) => {
     const user = await GetUser(req);
     const isWump = user.Servers.some((s) => s.Id === '282244165843156993');
@@ -71,16 +46,19 @@ router.get('/isWump', async (req, res) => {
 router.put('/profile', async (req: any, res) => {
     let profile;
     let user = await GetUser(req);
+    console.log("New Profile");
+    console.log(req.body);
     DataService.UserService.Transaction(async () => {
         if (user.Profile) {
-            profile = await (await DataService.ProfileService.Update(user.Profile, '_id', req.body)).save();
-        } else {
+            profile = await DataService.ProfileService.Update(user.Profile, '_id', req.body);
+        }
+        if (!user.Profile || !profile) {
             profile = await DataService.ProfileService.Create(req.body);
             user.Profile = profile._id;
-            user.save();
+            await user.save();
         }
+        res.json(profile);
     });
-    res.json(profile);
 });
 
 router.get('/user/:id', async(req, res) => {
@@ -133,6 +111,8 @@ router.put('/character', async (req: any, res) => {
     });
     res.json(character);
 });
+
+router.get('/event', async (req: any, res) => res.json(await DataService.EventService.GetAll()));
 
 let GetUser = async (req) => await DataService.UserService.Get(req.session.passport.user, 'UserId');
 

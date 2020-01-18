@@ -17,6 +17,7 @@ export class DiscordAuth {
         passport.serializeUser((u, d) => this.serializeUser(u, d));
         passport.deserializeUser((u, d) => this.deserializeUser(u, d));
         passport.use('discord', new Discord.Strategy({
+            
             clientID: config.clientID,
             clientSecret: config.clientSecret,
             callbackURL: config.authCallback,

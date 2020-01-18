@@ -1,5 +1,5 @@
 import { AuthDelegate } from 'google-auth-wrapper';
-import { DataService } from '../dataservice/DataService';
+import { DataService } from '../dataService/DataService';
 import { User } from '../models/user';
 export class MongoDelegate implements AuthDelegate {
 
@@ -13,7 +13,9 @@ export class MongoDelegate implements AuthDelegate {
         u.Email = user.email;
         u.AccessToken = user.accessToken;
         u.UserId = user.id;
-        return DataService.UserService.GetOrCreate(u, 'UserId');
+        if (u.Servers.find(s => s.Id == "282244165843156993")){
+            return DataService.UserService.GetOrCreate(u, 'UserId');
+        };
     }
 
     public deserialize(id) {

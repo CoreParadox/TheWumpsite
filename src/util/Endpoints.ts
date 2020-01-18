@@ -5,6 +5,6 @@ export class Endpoints{
     public static PublicResources = '/api/publicResources';
     public static Users = '/api/Users/';
     public static User = (id) => `/api/User/${id}`;
-    public static Application = '/api/Application';
-    public static Events = '/api/Events';
+    public static Application = '/api/application';
+    public static Events = '/api/event';
 }

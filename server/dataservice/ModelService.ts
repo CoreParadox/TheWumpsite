@@ -13,18 +13,22 @@ export class ModelService<T extends Typegoose> {
     }
 
     public async Transaction(delegate: () => void) {
-        const session = await this.mongoose.startSession();
-        session.startTransaction();
-        try {
-            delegate();
-            session.commitTransaction();
-        } catch (e) {
-            session.abortTransaction();
-        } finally {
-            if (session.inTransaction()) {
+        return new Promise(async (res, rej) => {
+            const session = await this.mongoose.startSession();
+            session.startTransaction();
+            try {
+                delegate();
+                session.commitTransaction();
+                res();
+            } catch (e) {
                 session.abortTransaction();
+                rej();
+            } finally {
+                if (session.inTransaction()) {
+                    session.abortTransaction();
+                }
             }
-        }
+        });
     }
 
     public async GetOrCreate(obj: T, propName: string) {
@@ -41,7 +45,7 @@ export class ModelService<T extends Typegoose> {
 
     public FindOne = (query: any) => this.service.findOne(query);
 
-    public Update = (obj, propName, update ) => this.service.findOneAndUpdate({ [propName]: obj }, update);
+    public Update = (obj, propName, update ) => this.service.findOneAndUpdate({ [propName]: obj }, update, {new: true});
 
     public Get = (obj, propName) => this.GetQuery(obj, propName).then((u) => u);
     public GetQuery = (obj, propName) => this.service.findOne({ [propName]: obj});

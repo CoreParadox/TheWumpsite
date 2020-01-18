@@ -37,8 +37,8 @@ export default class publicResources extends Vue{
 </script>
 
 <style lang="scss">
-  @import "@/style/app.scss";
-
+@import "@/style/app.scss";
+.publicResources{
   ul {
     width: 50%;
     height: 100%;
@@ -52,7 +52,7 @@ export default class publicResources extends Vue{
 
     li {
       display: flex;
-      flex: 1;
+      flex: .2;
       list-style: none;
       width: 100%;
       margin: .5em 0;
@@ -165,4 +165,5 @@ export default class publicResources extends Vue{
       }
     }
   }
+}
 </style>

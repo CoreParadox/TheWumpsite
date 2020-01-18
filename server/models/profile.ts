@@ -13,11 +13,11 @@ export class Profile extends Typegoose {
     public Pronoun: string;
 
     @prop({ index: false, unique: false })
-    public Roles: {Tank: boolean;Healer: boolean;DPS: boolean;} = {
+    public Roles: {Tank: boolean; Healer: boolean; DPS: boolean;} = {
         Tank: false,
         Healer: false,
         DPS: false,
-    }
+    };
 
     @prop({ index: false, unique: false, required: false })
     public Housing: string;
