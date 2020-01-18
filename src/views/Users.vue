@@ -30,10 +30,3 @@ export default class Users extends Vue{
   }
 }
 </script>
-<style lang="scss">
-.users{
-    li{
-        list-style-type: none;
-    }
-}
-</style>

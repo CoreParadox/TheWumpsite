@@ -21,11 +21,6 @@ export default new Router({
       component: Home,
     },
     {
-      path: '/login',
-      name: 'login',
-      component: Login,
-    },
-    {
       path: '/resources',
       name: 'resources',
       component: Resources,

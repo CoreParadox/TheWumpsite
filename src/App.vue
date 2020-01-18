@@ -26,7 +26,6 @@
 </template>
 
 <style lang="scss">
-  @import './style/app.scss';
   .login-text{
     color:#FFFFFF; 
     font-size:.75em;
@@ -41,9 +40,9 @@
 }
 
 .login-button{
-    position:fixed;
-    right:30px;
-    top:1.5em;  
+    position: absolute;
+    right:3%;
+    top:2%;  
     display: flex;
     width: 130px;
     padding: 0;

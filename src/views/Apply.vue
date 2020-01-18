@@ -100,8 +100,9 @@ export default class Apply extends Vue {
   background-color:$primary-color !important;
   text-align:justify;
 }
-  .modal-lg, .modal-xl {
-    max-width:90vw !important;
-  }
+
+.modal-lg, .modal-xl {
+  max-width:90vw !important;
+}
 
 </style>
