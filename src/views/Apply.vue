@@ -91,6 +91,8 @@ export default class Apply extends Vue {
 
   public async SubmitApplication() {
     var res = await http.post(Endpoints.Application, this.application);
+    this.application = new Application();
+    Vue.toasted.success('Your Application has been submitted!', {position:"top-center", theme:"bubble"});
   }
 }
 </script>

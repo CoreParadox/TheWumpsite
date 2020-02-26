@@ -30,3 +30,4 @@ export default class Users extends Vue{
   }
 }
 </script>
+

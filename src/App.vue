@@ -55,6 +55,9 @@
 <script lang="ts">
 import * as axios from 'axios';
 import { Component, Vue } from "vue-property-decorator";
+import Toasted from 'vue-toasted';
+ 
+Vue.use(Toasted)
 const http = axios.default;
 
 @Component
