@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@vue/cli": "^4.1.2",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "cookie-parser": "^1.4.4",
     "cookieparser": "^0.1.0",
     "dayspan-vuetify": "^0.4.0",
